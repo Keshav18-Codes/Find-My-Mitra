@@ -87,3 +87,8 @@ footer{padding:26px 5%;border-top:2px solid var(--ink);color:var(--soft);font-si
   .map-overlay{top:10px;left:10px;padding:12px 14px}
   .map-overlay h1{font-size:22px}
 }
+
+.spinner{display:inline-block;width:1em;height:1em;margin-right:.6em;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;vertical-align:-.15em;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+button:disabled,.btn.loading{opacity:.7;cursor:progress;transform:none}
+@media(prefers-reduced-motion:reduce){.spinner{animation-duration:2.5s}}

@@ -1,8 +1,6 @@
 const API = "http://localhost:5000/api";
 
-
-// ======================================
-// REGISTER
+// ====================================== REGISTER
 // ======================================
 
 const registerForm = document.getElementById("registerForm");
@@ -13,86 +11,78 @@ if (registerForm) {
 
         e.preventDefault();
 
-
         // Get form values
-        const name =
-            document.getElementById("name").value.trim();
+        const name = document
+            .getElementById("name")
+            .value
+            .trim();
 
-        const email =
-            document.getElementById("email").value.trim().toLowerCase();
+        const email = document
+            .getElementById("email")
+            .value
+            .trim()
+            .toLowerCase();
 
-        const password =
-            document.getElementById("password").value;
+        const password = document
+            .getElementById("password")
+            .value;
 
-        const confirmPassword =
-            document.getElementById("confirm").value;
-
+        const confirmPassword = document
+            .getElementById("confirm")
+            .value;
 
         console.log("Password:", password);
         console.log("Confirm Password:", confirmPassword);
 
-
         // Check passwords
         if (password !== confirmPassword) {
 
-            document.getElementById("msg").textContent =
-                "Passwords do not match";
+            document
+                .getElementById("msg")
+                .textContent = "Passwords do not match";
 
             return;
         }
-
 
         // Minimum password length
         if (password.length < 6) {
 
-            document.getElementById("msg").textContent =
-                "Password must be at least 6 characters";
+            document
+                .getElementById("msg")
+                .textContent = "Password must be at least 6 characters";
 
             return;
         }
 
-
-        document.getElementById("msg").textContent =
-            "Creating account...";
-
+        document
+            .getElementById("msg")
+            .textContent = "Creating account...";
 
         try {
 
-            const response = await fetch(
-                `${API}/auth/register`,
-                {
-                    method: "POST",
+            const response = await fetch(`${API}/auth/register`, {
+                method: "POST",
 
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        password: password
-                    })
-                }
-            );
-
+                body: JSON.stringify({name: name, email: email, password: password})
+            });
 
             const data = await response.json();
 
             console.log("Server response:", data);
 
-
             if (!response.ok) {
 
-                throw new Error(
-                    data.error || "Registration failed"
-                );
+                throw new Error(data.error || "Registration failed");
 
             }
 
-
-            document.getElementById("msg").textContent =
-                "Registration successful!";
-
+            document
+                .getElementById("msg")
+                .textContent = "Registration successful!";
 
             // Go to login page
             setTimeout(function () {
@@ -101,13 +91,13 @@ if (registerForm) {
 
             }, 1000);
 
-
         } catch (error) {
 
             console.error("Registration error:", error);
 
-            document.getElementById("msg").textContent =
-                error.message;
+            document
+                .getElementById("msg")
+                .textContent = error.message;
 
         }
 
@@ -115,9 +105,7 @@ if (registerForm) {
 
 }
 
-
-// ======================================
-// LOGIN
+// ====================================== LOGIN
 // ======================================
 
 const loginForm = document.getElementById("loginForm");
@@ -127,72 +115,38 @@ if (loginForm) {
     loginForm.addEventListener("submit", async function (e) {
 
         e.preventDefault();
+        const btn = loginForm.querySelector("button");
+        const msg = document.getElementById("msg");
+        const email = document
+            .getElementById("email")
+            .value
+            .trim()
+            .toLowerCase();
+        const password = document
+            .getElementById("password")
+            .value;
 
-
-        // Get form values
-        const email =
-            document.getElementById("email").value.trim().toLowerCase();
-
-        const password =
-            document.getElementById("password").value;
-
-
-        document.getElementById("msg").textContent =
-            "Logging in...";
-
+        setLoading(btn, true, "Logging in…");
+        msg.textContent = "";
 
         try {
-
-            const response = await fetch(
-                `${API}/auth/login`,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        email: email,
-                        password: password
-                    })
-                }
-            );
-
-
+            const response = await fetch(`${API}/auth/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({email, password})
+            });
             const data = await response.json();
-
-            console.log("Server response:", data);
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    data.error || "Invalid email or password"
-                );
-
-            }
-
-
-            // Save token and user so other pages can use them
+            if (!response.ok) 
+                throw new Error(data.error || "Invalid email or password");
+            
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
-
-
-            document.getElementById("msg").textContent =
-                "Login successful!";
-
-
-            window.location.href = "dashboard.html";
-
-
+            window.location.href = "dashboard.html"; // button stays in loading state until the redirect
         } catch (error) {
-
-            console.error("Login error:", error);
-
-            document.getElementById("msg").textContent =
-                error.message;
-
+            setLoading(btn, false);
+            msg.textContent = error.message;
         }
 
     });

@@ -105,8 +105,29 @@
     </div>
 
 
+    <script src="js/ui.js"></script>
     <script src="js/auth.js"></script>
 
 </body>
 
 </html>
+
+
+And in your auth.js, the requested loading changes are:
+
+const btn = registerForm.querySelector("button");
+
+
+before getting the form values,
+
+setLoading(btn, true, "Creating account…");
+
+
+before the fetch,
+
+and:
+
+setLoading(btn, false);
+
+
+before each early return and inside the catch block.
