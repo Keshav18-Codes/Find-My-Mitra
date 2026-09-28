@@ -1,4 +1,4 @@
-# Find My Friend
+# Find My Mitra
 
 College project using HTML5, CSS3, Vanilla JavaScript, Python Flask, PostgreSQL, Leaflet/OpenStreetMap and Flask-SocketIO.
 
