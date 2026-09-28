@@ -1,364 +1,89 @@
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#f5f7fb;color:#172033}a{color:inherit;text-decoration:none}nav{height:70px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid #e7eaf0;position:sticky;top:0;z-index:10}nav span{display:flex;gap:20px;align-items:center}.brand{font-weight:800;font-size:20px}.btn{display:inline-block;border:0;border-radius:10px;padding:12px 18px;background:#2563eb;color:#fff;cursor:pointer;font-weight:700}.btn.ghost{background:#e9eefc;color:#1d4ed8}.linkbtn{border:0;background:none;cursor:pointer;font:inherit}.hero{min-height:calc(100vh - 110px);display:flex;align-items:center;justify-content:center;gap:80px;padding:70px 8%;background:linear-gradient(135deg,#eff6ff,#fff)}.hero section{max-width:650px}.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.02;margin:10px 0 20px}.hero p{font-size:19px;line-height:1.7;color:#596579}.eyebrow{font-weight:800;color:#2563eb!important;font-size:13px!important;letter-spacing:2px}.hero-card{background:#fff;padding:45px;border-radius:24px;box-shadow:0 20px 60px #17203318;font-size:70px;max-width:300px}.hero-card h3{font-size:22px}.hero-card p{font-size:15px}.container{max-width:1100px;margin:0 auto;padding:45px 20px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}.card,.panel{background:#fff;padding:25px;border-radius:18px;box-shadow:0 8px 30px #1720330b;border:1px solid #e8ebf2}.danger{border-left:5px solid #ef4444}.auth{min-height:100vh;display:grid;place-items:center;padding:20px}.auth .panel{width:min(440px,100%)}form{display:grid;gap:16px}label{font-weight:700;display:grid;gap:7px}input,textarea{width:100%;padding:12px 13px;border:1px solid #d6dbe5;border-radius:9px;font:inherit}textarea{min-height:100px}.msg{min-height:20px}.search{display:flex;gap:10px;margin-bottom:25px}.search input{max-width:500px}#map{height:65vh;border-radius:18px;overflow:hidden;border:1px solid #ddd}.center{text-align:center}.sos{background:#dc2626;font-size:20px;padding:18px 35px}footer{text-align:center;padding:20px;color:#6b7280}@media(max-width:700px){nav{padding:0 15px}nav span{gap:10px;font-size:13px}.hero{flex-direction:column;gap:25px;text-align:center;padding:50px 20px}.hero-card{display:none}.search{flex-direction:column}}
-/* =========================================
-   FIND MY FRIEND - MAIN CSS
-========================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7fc;
-    color: #0f172a;
-    min-height: 100vh;
-}
-
-
-/* =========================================
-   AUTH PAGE
-========================================= */
-
-.auth-container {
-    min-height: 100vh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px 20px;
-
-    background:
-        radial-gradient(
-            circle at top left,
-            #dbeafe 0,
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at bottom right,
-            #e0e7ff 0,
-            transparent 35%
-        ),
-        #f4f7fc;
-}
-
-
-/* =========================================
-   AUTH CARD
-========================================= */
-
-.auth-card {
-    width: 100%;
-    max-width: 460px;
-
-    background: #ffffff;
-
-    padding: 40px;
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 20px 60px rgba(15, 23, 42, 0.10);
-
-    border: 1px solid #e5e7eb;
-}
-
-
-/* =========================================
-   BRAND
-========================================= */
-
-.brand {
-    display: flex;
-    align-items: center;
-
-    gap: 8px;
-
-    font-size: 20px;
-    font-weight: 700;
-
-    color: #111827;
-
-    margin-bottom: 30px;
-}
-
-
-/* =========================================
-   HEADING
-========================================= */
-
-.auth-card h1 {
-    font-size: 34px;
-
-    line-height: 1.2;
-
-    margin-bottom: 28px;
-
-    color: #0f172a;
-}
-
-
-/* =========================================
-   FORM
-========================================= */
-
-#registerForm {
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* =========================================
-   LABELS
-========================================= */
-
-#registerForm label {
-    font-size: 15px;
-
-    font-weight: 700;
-
-    color: #172033;
-
-    margin-bottom: 8px;
-}
-
-
-/* =========================================
-   INPUTS
-========================================= */
-
-#registerForm input {
-    width: 100%;
-
-    height: 52px;
-
-    padding: 0 15px;
-
-    margin-bottom: 20px;
-
-    border: 1px solid #cbd5e1;
-
-    border-radius: 10px;
-
-    background: #ffffff;
-
-    color: #111827;
-
-    font-size: 16px;
-
-    outline: none;
-
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
-}
-
-
-/* Input focus */
-
-#registerForm input:focus {
-    border-color: #2563eb;
-
-    background: #ffffff;
-
-    box-shadow:
-        0 0 0 4px rgba(37, 99, 235, 0.12);
-}
-
-
-/* Placeholder */
-
-#registerForm input::placeholder {
-    color: #94a3b8;
-}
-
-
-/* =========================================
-   PASSWORD INPUT
-========================================= */
-
-#password,
-#confirm {
-    letter-spacing: 1px;
-}
-
-
-/* =========================================
-   REGISTER BUTTON
-========================================= */
-
-#registerForm button {
-    width: 100%;
-
-    height: 52px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #2563eb;
-
-    color: #ffffff;
-
-    font-size: 16px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    margin-top: 5px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-/* Hover */
-
-#registerForm button:hover {
-    background: #1d4ed8;
-
-    transform: translateY(-1px);
-
-    box-shadow:
-        0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-
-/* Click */
-
-#registerForm button:active {
-    transform: translateY(0);
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-#msg {
-    min-height: 24px;
-
-    margin-top: 18px;
-
-    font-size: 15px;
-
-    color: #172033;
-}
-
-
-/* =========================================
-   BOTTOM LOGIN TEXT
-========================================= */
-
-.auth-card > p {
-    margin-top: 22px;
-
-    font-size: 15px;
-
-    color: #475569;
-}
-
-
-/* Login link */
-
-.auth-card a {
-    color: #2563eb;
-
-    text-decoration: none;
-
-    font-weight: 700;
-}
-
-
-/* Link hover */
-
-.auth-card a:hover {
-    text-decoration: underline;
-}
-
-
-/* =========================================
-   RESPONSIVE DESIGN
-========================================= */
-
-@media (max-width: 600px) {
-
-    .auth-container {
-        padding: 20px 15px;
-    }
-
-    .auth-card {
-        padding: 30px 24px;
-
-        border-radius: 18px;
-    }
-
-    .auth-card h1 {
-        font-size: 29px;
-    }
-
-    .brand {
-        font-size: 18px;
-    }
-
-}
-
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 380px) {
-
-    .auth-card {
-        padding: 25px 18px;
-    }
-
-    .auth-card h1 {
-        font-size: 26px;
-    }
-
-    #registerForm input,
-    #registerForm button {
-        height: 48px;
-    }
-
-}
-/* =========================================
-   NOTIFICATIONS
-========================================= */
-
-.notif.unread {
-    border-left: 4px solid #2563eb;
-    background: #f5f8ff;
-}
-
-.notif.read {
-    opacity: .7;
-}
-
-.btn.small {
-    padding: 7px 12px;
-    font-size: 13px;
-    margin-top: 8px;
-}
-
-/* =========================================
-   CHANGE PASSWORD SECTION
-========================================= */
-
-.panel .divider {
-    height: 1px;
-    background: #e8ebf2;
-    margin: 28px 0;
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600&display=swap');
+:root{--paper:#E6ECE4;--sheet:#F4F7F1;--ink:#12332D;--soft:#4F6B63;--line:#A9C2B5;--pin:#D33654;--on-pin:#fff;--sun:#F1C232;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0F2622;--sheet:#16352F;--ink:#E6ECE4;--soft:#9DB8AD;--line:#2C5248;--pin:#F0607A;--on-pin:#0F2622}}
+:root[data-theme="dark"]{--paper:#0F2622;--sheet:#16352F;--ink:#E6ECE4;--soft:#9DB8AD;--line:#2C5248;--pin:#F0607A;--on-pin:#0F2622}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;font-family:'Instrument Sans',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;min-height:100vh}
+h1,h2,h3{font-family:'Bricolage Grotesque','Instrument Sans',sans-serif;line-height:1.05;letter-spacing:-.02em;margin:0 0 .5em}
+h1{font-size:clamp(34px,5vw,56px);font-weight:700}h2{font-size:clamp(26px,3.4vw,38px);font-weight:700;margin-top:1.4em}h3{font-size:20px;font-weight:650}
+p{margin:0 0 1em}a{color:inherit}
+:focus-visible{outline:3px solid var(--pin);outline-offset:3px}
+/* brand + nav */
+.pin{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--pin);box-shadow:0 0 0 4px var(--paper),0 0 0 6px var(--pin);margin-right:14px;vertical-align:-1px}
+.brand{display:flex;align-items:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.02em;text-decoration:none;margin-bottom:0}
+nav{min-height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:var(--paper);border-bottom:2px solid var(--ink);position:sticky;top:env(safe-area-inset-top,0px);z-index:10}
+nav span{display:flex;gap:22px;align-items:center;flex-wrap:wrap}nav span a:not(.btn){text-decoration:none;font-weight:500}nav span a:not(.btn):hover{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:2px}
+/* buttons */
+.btn,form button{display:inline-block;border:2px solid var(--ink);border-radius:var(--r);padding:11px 18px;background:var(--pin);color:var(--on-pin);cursor:pointer;font:600 16px 'Instrument Sans',sans-serif;text-decoration:none;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.btn:hover,form button:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.btn:active,form button:active{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn.ghost{background:var(--sheet);color:var(--ink)}.btn.small{padding:6px 12px;font-size:14px;margin-top:8px;box-shadow:3px 3px 0 var(--ink)}
+.linkbtn{border:0;background:none;cursor:pointer;font:500 16px 'Instrument Sans',sans-serif;color:inherit;padding:0}.linkbtn:hover{text-decoration:underline;text-underline-offset:5px}
+/* app layout */
+.container{max-width:1100px;margin:0 auto;padding:45px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card,.panel,.auth-card{background:var(--sheet);padding:26px;border:2px solid var(--ink);border-radius:var(--r);box-shadow:6px 6px 0 var(--line)}
+.card h3{margin-bottom:.3em}.card p{color:var(--soft)}
+.danger{border-left:10px solid var(--pin)}
+.center{text-align:center}.divider{height:2px;background:var(--line);margin:28px 0}
+.msg,#msg{min-height:22px;color:var(--soft);font-size:15px}
+.search{display:flex;gap:12px;margin-bottom:26px}.search input{max-width:500px}
+.sos{background:var(--pin);font-size:22px;padding:20px 38px}
+.notif.unread{border-left:10px solid var(--pin)}.notif.read{opacity:.65}
+#map{height:65vh;border:2px solid var(--ink);border-radius:var(--r);overflow:hidden}
+.leaflet-tile-pane{filter:grayscale(.75) sepia(.15) hue-rotate(110deg) contrast(.92)}
+/* forms + auth */
+form{display:grid;gap:16px}
+label{font-weight:600;display:grid;gap:7px;font-size:15px}
+input,textarea{width:100%;padding:12px 13px;border:2px solid var(--ink);border-radius:var(--r);background:var(--paper);color:var(--ink);font:inherit}
+input:disabled{opacity:.6}textarea{min-height:100px}::placeholder{color:var(--soft)}
+.auth,.auth-container{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 15% 20%,transparent 0 120px,var(--line) 121px 123px,transparent 124px 190px,var(--line) 191px 193px,transparent 194px),var(--paper)}
+.auth .panel,.auth-card{width:min(460px,100%)}.auth .brand,.auth-card .brand{margin-bottom:26px}
+.auth-card>p,.panel>p{margin-top:20px;color:var(--soft)}.auth a:not(.brand):not(.btn),.auth-card a:not(.brand){color:var(--pin);font-weight:700}
+footer{padding:26px 5%;border-top:2px solid var(--ink);color:var(--soft);font-size:15px}
+/* visitor home */
+.home{max-width:1240px;margin:0 auto;padding:0 5%}
+.home-hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px;align-items:center;padding:64px 0 72px}
+.home-hero p.lead{font-size:19px;color:var(--soft);max-width:46ch;margin:22px 0 30px}
+.actions{display:flex;gap:16px;flex-wrap:wrap}
+.demo{border:2px solid var(--ink);border-radius:var(--r);background:var(--sheet);box-shadow:8px 8px 0 var(--line);overflow:hidden}
+.demo svg{display:block;width:100%;height:auto;touch-action:none;cursor:grab;background:var(--paper)}
+.demo svg:active{cursor:grabbing}.demo .contour{fill:none;stroke:var(--line);stroke-width:1.5}
+.demo .tie{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 5}.demo .tag{font:600 13px 'Instrument Sans',sans-serif;fill:var(--ink)}
+.demo .dot{fill:var(--ink)}.demo .me{fill:var(--pin)}.demo .halo{fill:none;stroke:var(--pin);stroke-width:2}
+.readout{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink)}
+.readout li{padding:12px 16px;border-right:2px solid var(--ink);display:flex;justify-content:space-between;gap:8px;font-size:15px}.readout li:last-child{border-right:0}.readout b{font-variant-numeric:tabular-nums}
+.demo-note{font-size:14px;color:var(--soft);padding:10px 16px;border-top:2px solid var(--ink);margin:0}
+.tenets{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.tenets div{padding:32px 28px 32px 0}.tenets div+div{padding-left:28px;border-left:2px solid var(--ink)}.tenets p{color:var(--soft);margin:0;max-width:34ch}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;max-width:720px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:56px 1fr;padding:22px 0;border-bottom:2px solid var(--line)}
+.steps li::before{content:counter(s);font:700 34px 'Bricolage Grotesque',sans-serif;color:var(--pin)}.steps h3{margin-bottom:.15em}.steps p{margin:0;color:var(--soft)}
+.closing{margin:88px 0 72px;padding:44px;background:var(--ink);color:var(--paper);border-radius:var(--r);display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.closing h2{margin:0;color:var(--paper)}.closing .btn{background:var(--sun);color:#12332D;border-color:var(--paper);box-shadow:4px 4px 0 var(--pin)}
+@media(max-width:900px){.home-hero{grid-template-columns:1fr;gap:36px;padding:40px 0 52px}.tenets{grid-template-columns:1fr}.tenets div,.tenets div+div{padding:24px 0;border-left:0}.tenets div+div{border-top:2px solid var(--ink)}}
+@media(max-width:600px){nav{padding:10px 16px}nav span{gap:14px;font-size:15px}.search{flex-direction:column}.readout{grid-template-columns:1fr}.readout li{border-right:0;border-bottom:2px solid var(--ink)}.readout li:last-child{border-bottom:0}.closing{padding:28px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* ===== Full-screen live map ===== */
+.map-body{height:100vh;height:100dvh;display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.map-page{flex:1;position:relative;min-height:0}
+.map-page #map{position:absolute;inset:0;height:auto;border:0;border-radius:0;isolation:isolate;z-index:0}
+
+.map-overlay{position:absolute;top:16px;left:16px;z-index:1000;width:min(330px,calc(100% - 32px));
+  background:var(--sheet);border:2px solid var(--ink);border-radius:var(--r);
+  box-shadow:5px 5px 0 var(--ink);padding:16px 18px}
+.map-overlay h1{font-size:28px;margin:0 0 6px}
+.map-overlay p{font-size:15px;color:var(--soft);margin:0}
+.map-overlay .msg{min-height:0;margin-top:10px;color:var(--ink);font-weight:600}
+.map-overlay .msg:empty{display:none}
+
+/* zoom buttons now sit top-right, match the theme */
+.leaflet-top.leaflet-right{margin-top:16px;margin-right:6px}
+.leaflet-bar a{background:var(--sheet);color:var(--ink);border-color:var(--ink)}
+
+@media(max-width:600px){
+  .map-overlay{top:10px;left:10px;padding:12px 14px}
+  .map-overlay h1{font-size:22px}
 }

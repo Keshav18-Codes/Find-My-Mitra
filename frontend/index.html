@@ -1,7 +1,62 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Find My Friend</title><link rel="stylesheet" href="css/style.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Find My Friend: see how close your people are</title><link rel="stylesheet" href="css/style.css"></head>
 <body>
-<nav><a class="brand" href="index.html">📍 Find My Friend</a><span><a href="login.html">Login</a><a class="btn" href="register.html">Get Started</a></span></nav>
-<main class="hero"><section><p class="eyebrow">FRIENDS • LOCATION • SAFETY</p><h1>Stay connected with the people who matter.</h1><p>Find My Friend lets you voluntarily share your location with approved friends and view them on a live map.</p><a class="btn" href="register.html">Create Account</a> <a class="btn ghost" href="login.html">Login</a></section><div class="hero-card">🗺️<h3>Private location sharing</h3><p>Your location is visible only while you choose to share it.</p></div></main>
-<footer>Find My Friend • College Project</footer></body></html>
+<nav><a class="brand" href="index.html"><i class="pin"></i>Find My Friend</a><span><a href="#how">How it works</a><a href="login.html">Log in</a><a class="btn small" style="margin:0" href="register.html">Create account</a></span></nav>
+<main class="home">
+<section class="home-hero">
+  <div>
+    <h1>See how close your people are.</h1>
+    <p class="lead">Share your location with friends you approve, only while you choose to. See who is nearby on a live map, and send an SOS when you need them.</p>
+    <div class="actions"><a class="btn" href="register.html">Create account</a><a class="btn ghost" href="login.html">Log in</a></div>
+  </div>
+  <div class="demo">
+    <svg id="stage" viewBox="0 0 700 440" role="img" aria-label="Interactive demo: drag the red pin to see distances to three friends change"></svg>
+    <ul class="readout" aria-live="off"><li>Asha <b id="d0"></b></li><li>Rohan <b id="d1"></b></li><li>Meera <b id="d2"></b></li></ul>
+    <p class="demo-note">Demo with made-up people. Drag the red pin, no real locations are used.</p>
+  </div>
+</section>
+
+<section class="tenets" aria-label="What makes it different">
+  <div><h3>You switch it on</h3><p>Sharing is off until you turn it on, and you can turn it off at any time.</p></div>
+  <div><h3>Only approved friends</h3><p>A friend sees you only after you accept their request. Nobody else can.</p></div>
+  <div><h3>One tap for help</h3><p>SOS sends your current location to your approved friends as a notification.</p></div>
+</section>
+
+<section id="how">
+  <h2>Start in three steps</h2>
+  <ol class="steps">
+    <li><div><h3>Add your friends</h3><p>Search by name or email and send a request. They accept it from their Friends page.</p></div></li>
+    <li><div><h3>Turn on sharing</h3><p>Open your dashboard and allow location access in your browser.</p></div></li>
+    <li><div><h3>Open the live map</h3><p>Friends who are sharing appear as pins. Select one to zoom to them.</p></div></li>
+  </ol>
+</section>
+
+<section class="closing"><h2>Ready to find your friends?</h2><a class="btn" href="register.html">Create account</a></section>
+</main>
+<footer>Find My Friend. A college project built with Flask, PostgreSQL and Leaflet.</footer>
+<script>
+(function(){
+var NS="http://www.w3.org/2000/svg",svg=document.getElementById("stage");
+function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e}
+// contour lines: two "hills"
+[[210,200,8,34],[520,290,6,30]].forEach(function(h,j){for(var k=1;k<=h[2];k++){var r=k*h[3],d="";for(var i=0;i<=72;i++){var a=i/72*Math.PI*2,rr=r*(1+.12*Math.sin(3*a+k*.7+j)+.07*Math.sin(5*a+k+j*2));d+=(i?"L":"M")+(h[0]+Math.cos(a)*rr*1.15).toFixed(1)+" "+(h[1]+Math.sin(a)*rr*.9).toFixed(1)}el("path",{d:d+"Z","class":"contour"})}});
+var names=["Asha","Rohan","Meera"],base=[[150,110],[540,120],[450,350]],fr=[];
+var ties=names.map(function(){return el("line",{"class":"tie"})});
+names.forEach(function(n,i){var g=el("g");el("circle",{r:9,"class":"dot"},g);el("text",{x:14,y:5,"class":"tag"},g).textContent=n;fr.push(g)});
+var me={x:330,y:230},mg=el("g");el("circle",{r:20,"class":"halo"},mg);el("circle",{r:10,"class":"me"},mg);el("text",{x:-11,y:38,"class":"tag"},mg).textContent="You";
+var pos=base.map(function(b){return{x:b[0],y:b[1]}});
+function draw(){fr.forEach(function(g,i){g.setAttribute("transform","translate("+pos[i].x+" "+pos[i].y+")");ties[i].setAttribute("x1",me.x);ties[i].setAttribute("y1",me.y);ties[i].setAttribute("x2",pos[i].x);ties[i].setAttribute("y2",pos[i].y);var km=Math.hypot(me.x-pos[i].x,me.y-pos[i].y)/100;document.getElementById("d"+i).textContent=km.toFixed(1)+" km"});mg.setAttribute("transform","translate("+me.x+" "+me.y+")")}
+var drag=false;
+function pt(e){var p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse())}
+svg.addEventListener("pointerdown",function(e){drag=true;svg.setPointerCapture(e.pointerId);move(e)});
+svg.addEventListener("pointermove",function(e){if(drag)move(e)});
+svg.addEventListener("pointerup",function(){drag=false});
+function move(e){var p=pt(e);me.x=Math.max(20,Math.min(680,p.x));me.y=Math.max(20,Math.min(420,p.y));draw()}
+// the one ambient motion: friends drift slowly
+var still=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tick(t){for(var i=0;i<3;i++){pos[i].x=base[i][0]+Math.sin(t/2600+i*2)*16;pos[i].y=base[i][1]+Math.cos(t/3100+i*3)*12}draw();requestAnimationFrame(tick)}
+draw();if(!still)requestAnimationFrame(tick);
+})();
+</script>
+</body></html>
