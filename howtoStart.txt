@@ -1,0 +1,8 @@
+frontend:  cd C:\Users\kesha\Downloads\find-my-friend-pg18\find-my-friend-pg18\frontend
+python -m http.server 8080
+
+
+
+backend:  python app.py
+
+server to start web site on:   http://127.0.0.1:8080/register.html
