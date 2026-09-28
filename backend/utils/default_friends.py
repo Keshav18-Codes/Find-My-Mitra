@@ -8,7 +8,7 @@ EARTH_RADIUS_M = 6378137
 
 DEFAULT_FRIENDS = [
     {"email": "manjiri.deshpande@fmfriend.local", "name": "Manjiri Deshpande", "distance_m": 500, "bearing_deg": 45},
-    {"email": "keshav.parmar@fmfriend.local",     "name": "Keshav Parmar",     "distance_m": 800, "bearing_deg": 200},
+    {"email": "bharati.parmar@fmfriend.local",     "name": "Bharati Parmar",     "distance_m": 800, "bearing_deg": 200},
 ]
 
 def _get_or_create_default_user(entry):
